@@ -10,14 +10,16 @@ object MyModule{
     }
 
     def fibonacci(n : Int) : Int = {
-        def loop(n : Int) : Int = {
-            if(n < 2) n 
-            else loop(n - 2) + loop(n - 1)
+        @annotation.tailrec
+        def loop(n : Int, a : Int, b : Int) : Int = {
+            if(n < 3) b
+            else loop(n-1, b, a+b)
         }
-        loop(n)
+        loop(n,0,1)
     }
 
     def factorial(n : Int) : Int = {
+        @annotation.tailrec
         def loop(n : Int, acc : Int) : Int = {
             if(n <= 0) acc
             else loop(n - 1,acc*n)
