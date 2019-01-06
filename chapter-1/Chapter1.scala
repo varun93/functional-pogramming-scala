@@ -9,6 +9,16 @@ object Chapter1{
         message.format(value,abs(value)) 
     }
 
+    def isSorted(array : Array[Int], compare : (Int,Int) => Boolean) : Boolean = {
+        @annotation.tailrec
+        def loop(index : Int) : Boolean = {
+            if(index == array.length-1) true
+            else if(!compare(array(index),array(index + 1))) false
+            else loop(index + 1)
+        }
+        loop(0)
+    }
+
     def fibonacci(n : Int) : Int = {
         @annotation.tailrec
         def loop(n : Int, a : Int, b : Int) : Int = {
@@ -29,19 +39,19 @@ object Chapter1{
         loop(0)
     }
     
-    def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
+    // def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
        
-    }
+    // }
 
-    def findFirstHof(array : Array[A], f : A => Boolean) : Int = {
-        @annotation.tailrec
-        def loop(index : Int) : Int = {
-            if(index >= array.length) -1
-            else if(f(array(index))) index
-            else loop(index + 1)
-        }
-        loop(0)
-    }
+    // def findFirstHof(array : Array[A], f : A => Boolean) : Int = {
+    //     @annotation.tailrec
+    //     def loop(index : Int) : Int = {
+    //         if(index >= array.length) -1
+    //         else if(f(array(index))) index
+    //         else loop(index + 1)
+    //     }
+    //     loop(0)
+    // }
 
     def factorial(n : Int) : Int = {
         @annotation.tailrec
@@ -52,6 +62,7 @@ object Chapter1{
         loop(n, 1)
     }
     
-    def main(args : Array[String]) : Unit  =
-    println(formatAbs(-42))
+    def main(args : Array[String]) : Unit  = {
+        println(formatAbs(-42))
+    }
 }
