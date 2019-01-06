@@ -9,7 +9,7 @@ object Chapter1{
         message.format(value,abs(value)) 
     }
 
-    def isSorted(array : Array[Int], compare : (Int,Int) => Boolean) : Boolean = {
+    def isSorted[A](array : Array[A], compare : (A, A) => Boolean) : Boolean = {
         @annotation.tailrec
         def loop(index : Int) : Boolean = {
             if(index == array.length-1) true
@@ -28,7 +28,6 @@ object Chapter1{
         loop(n, 0, 1)
     }
 
-
     def findFirst(array : Array[Int], key : Int) : Int = {
         @annotation.tailrec
         def loop(index : Int) : Int = {
@@ -39,19 +38,15 @@ object Chapter1{
         loop(0)
     }
     
-    // def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
-       
-    // }
-
-    // def findFirstHof(array : Array[A], f : A => Boolean) : Int = {
-    //     @annotation.tailrec
-    //     def loop(index : Int) : Int = {
-    //         if(index >= array.length) -1
-    //         else if(f(array(index))) index
-    //         else loop(index + 1)
-    //     }
-    //     loop(0)
-    // }
+    def findFirstHof[A](array : Array[A], f : A => Boolean) : Int = {
+        @annotation.tailrec
+        def loop(index : Int) : Int = {
+            if(index >= array.length) -1
+            else if(f(array(index))) index
+            else loop(index + 1)
+        }
+        loop(0)
+    }
 
     def factorial(n : Int) : Int = {
         @annotation.tailrec
