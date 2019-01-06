@@ -28,6 +28,10 @@ object Chapter1{
         }
         loop(0)
     }
+    
+    def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
+       
+    }
 
     def findFirstHof(array : Array[A], f : A => Boolean) : Int = {
         @annotation.tailrec
