@@ -14,6 +14,27 @@ object List{
         case Cons(head,tail) => head * product(tail) 
     }
 
+    def tail[A](list : List[A]) : List[A] = list match {
+        case Nil => Nil
+        case Cons(_,tail) => tail
+    }
+
+    def setHead[A](list : List[A],newHead : A) : List[A] = list match  {
+        case Nil => Cons(newHead,Nil)
+        case Cons(_,tail) => Cons(newHead,tail)
+    }
+
+    def drop[A](l: List[A], n: Int): List[A] = l match {
+        case Nil => Nil
+        case Cons(_,tail) => if(n <= 0) {
+            l
+        } 
+        else{
+            drop(tail, n - 1)   
+        }
+    }
+
+    // the magic happens here
     def apply[A](as: A*): List[A] = {
         if (as.isEmpty) Nil
         else Cons(as.head, apply(as.tail: _*))
