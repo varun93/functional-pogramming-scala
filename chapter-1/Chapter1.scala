@@ -56,7 +56,23 @@ object Chapter1{
         }
         loop(n, 1)
     }
+
+    def currying[A,B,C](a : A, f : (A,B) => C) : B => C = {
+        (b : B) =>  f(a,b)
+    }
     
+    // val stepOne = curry((x : Int, y : Int) => x + y)
+    // val stepTwo = stepOne(5)
+    // val stepThree = stepTwo(10)
+    def curry[A,B,C](f: (A, B) => C): A => (B => C) = {
+        (a : A) => (b : B) => f(a,b) 
+    }
+
+    //  uncurry((a : Int) => (b : Int) => a + b)
+    def uncurry[A,B,C](f: A => (B => C)): (A, B) => C = {
+        (a : A, b : B) => f(a)(b)
+    }
+
     def main(args : Array[String]) : Unit  = {
         println(formatAbs(-42))
     }
