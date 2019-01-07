@@ -34,7 +34,27 @@ object List{
         }
     }
 
-    // the magic happens here
+    def dropWhile[A](l: List[A], f: A => Boolean): List[A] = l match {
+        case Cons(head, tail) if f(head) => dropWhile(tail,f)
+        case _ => l
+    }
+
+    /*
+     Tracing the call stack
+     append(List(1,2,3),List(4,5,6))
+     Cons(1,append(List(2,3),(4,5,6))
+     Cons(2,append(List(3), (4,5,6)))
+     Cons(3,append(List(Nil), (4,5,6) ))
+     Cons(3,4,5,6))
+     Cons(2,3,4,5,6)
+     Cons(1,2,3,4,5,6)
+    */
+    def append[A](a1: List[A], a2: List[A]): List[A] = match a1 {
+        case Nil => a2
+        case (head,tail) => Cons(head, append(tail, a2))
+    }
+
+    // the magic happens here in the variadic function
     def apply[A](as: A*): List[A] = {
         if (as.isEmpty) Nil
         else Cons(as.head, apply(as.tail: _*))
