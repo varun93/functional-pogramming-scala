@@ -75,6 +75,10 @@ object List{
         case Cons(head,tail) =>  f(head,foldRight(tail,d)(f)) 
     }
 
+    def length[A](l : List[A]) : Int = {
+        foldRight(l,0)((_,total) => 1 + total)
+    }
+ 
     // the magic happens here in the variadic function
     def apply[A](as: A*): List[A] = {
         if (as.isEmpty) Nil
