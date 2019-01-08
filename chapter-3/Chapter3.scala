@@ -51,7 +51,7 @@ object List{
     */
     def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
         case Nil => a2
-        case Cons(head,tail) => Cons(head, append(tail, a2))
+        case Cons(head, tail) => Cons(head, append(tail, a2))
     }
 
     def init[A](l: List[A]): List[A] = l match {
@@ -59,6 +59,11 @@ object List{
         case Cons(_,Nil) => Nil
         case Cons(head,tail) => Cons(head,init(tail))
     }
+
+    def dropWhileCurried[A](l : List[A])(f : A => Boolean) : List[A] = l match {
+        case Cons(head, tail) if f(head) => dropWhileCurried(tail)(f)
+        case _ => l     
+    }  
 
     // the magic happens here in the variadic function
     def apply[A](as: A*): List[A] = {
