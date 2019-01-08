@@ -65,6 +65,11 @@ object List{
         case _ => l     
     }  
 
+    def foldRight[A](l : List[A], d : A)(f : (A, A) => A) : A = l match {
+        case Nil => d
+        case Cons(head,tail) =>  f(head,foldRight(tail,d)(f)) 
+    }
+
     // the magic happens here in the variadic function
     def apply[A](as: A*): List[A] = {
         if (as.isEmpty) Nil
