@@ -65,6 +65,11 @@ object List{
         case _ => l     
     }  
 
+    /*
+        Usage
+        foldRight(List(1,2,3,4,5),0)((x,y) => x + y) or foldRight(List(1,2,3,4,5),0)(_ + _) 
+        foldRight(List(1,2,3,4,5),1)((x,y) => x * y) or foldRight(List(1,2,3,4,5),1)(_ * _)
+    */
     def foldRight[A](l : List[A], d : A)(f : (A, A) => A) : A = l match {
         case Nil => d
         case Cons(head,tail) =>  f(head,foldRight(tail,d)(f)) 
