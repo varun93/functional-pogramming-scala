@@ -49,9 +49,15 @@ object List{
      Cons(2,3,4,5,6)
      Cons(1,2,3,4,5,6)
     */
-    def append[A](a1: List[A], a2: List[A]): List[A] = match a1 {
+    def append[A](a1: List[A], a2: List[A]): List[A] = a1 match {
         case Nil => a2
-        case (head,tail) => Cons(head, append(tail, a2))
+        case Cons(head,tail) => Cons(head, append(tail, a2))
+    }
+
+    def init[A](l: List[A]): List[A] = l match {
+        case Nil => Nil
+        case Cons(_,Nil) => Nil
+        case Cons(head,tail) => Cons(head,init(tail))
     }
 
     // the magic happens here in the variadic function
